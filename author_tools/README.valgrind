@@ -1,0 +1,5 @@
+For using valgrind to check for memory leaks, the valgrind suppressions
+file valgrind.supp can be quite useful to avoid false positives from
+perl itself. Example usage:
+
+valgrind -v --num-callers=20 --suppressions=author_tools/valgrind.supp --leak-check=full -- perl -Mblib ....
