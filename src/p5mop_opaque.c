@@ -37,7 +37,7 @@ SV* THX_newMopOV(pTHX_ SV* rv) {
 
     MopOV* opaque;
 
-    Newx(opaque, 1, MopOV);
+    Newx(opaque, 1, MopOV); /* <---- FIXME this is never freed right now */
     opaque->id        = new_uuid();
     opaque->slots     = newHV();
     opaque->callbacks = newHV();

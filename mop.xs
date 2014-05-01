@@ -56,6 +56,12 @@ get_at_slot(rv, slot_name)
     SV* slot_name;
     PPCODE:
         EXTEND(SP, 1);
+        /* Note that this pushes the exact SV that is in the opaque value.
+         * It may be desirable to instead do something like
+         * PUSHs(sv_mortalcopy(MopOV_get_at_slot(...)))
+         * because otherwise, it's kind of like lvalues: If you take a
+         * reference to the return value of the function, you get the EXACT
+         * same SV so you can modify it at a distance. */
         PUSHs(MopOV_get_at_slot(rv, slot_name));
 
 void
