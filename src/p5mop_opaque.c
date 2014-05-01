@@ -96,7 +96,7 @@ bool THX_MopOV_has_class(pTHX_ SV* rv) {
 SV* THX_MopOV_get_at_slot(pTHX_ SV* rv, SV* slot_name) {
     MopOV* opaque  = SVrv_to_MopOV(rv);
     HE* slot_entry = hv_fetch_ent(opaque->slots, slot_name, 0, 0);
-    return slot_entry == NULL ? newSV(0) : HeVAL(slot_entry);
+    return slot_entry == NULL ? &PL_sv_undef : HeVAL(slot_entry);
 }
 
 void THX_MopOV_set_at_slot(pTHX_ SV* rv, SV* slot_name, SV* slot_value) {
